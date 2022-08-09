@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { StyleSheet, Text, TextInput, View,TouchableOpacity } from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const App = () => {
   const [Input,setInput]=useState('');
+  const [secure,setSecure] =useState(true);
+
+  const SecureText=()=>{
+    setSecure(!secure)
+  }
+
   if (Input.length==0){
     return(
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
@@ -11,6 +17,7 @@ const App = () => {
             style={{color: 'black',fontSize: 17,fontWeight: 'bold',borderColor:'black',borderWidth:2,width:'80%'}}
             value={Input}
             onChangeText={setInput}
+            secureTextEntry={true}
             autoCompleteType="off"
           />
       </View>
@@ -29,16 +36,14 @@ const App = () => {
         borderWidth: 2,
         borderColor:'black',
       }}>
-      <Icon
-        style={{padding: 15}}
-        name="visibility"
-        size={30}
-        color="black"
-      />
+      <TouchableOpacity onPress={SecureText}>
+        <Icon style={{padding: 15}} name={secure ? 'eye-off-outline' : "eye-outline"} size={30} color='#000' />
+      </TouchableOpacity>
       <TextInput
         style={{color: 'black',fontSize: 17,fontWeight: 'bold'}}
         value={Input}
         onChangeText={setInput}
+        secureTextEntry={secure}
         autoCompleteType="off"
       />
     </View>
