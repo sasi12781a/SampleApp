@@ -5,6 +5,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const App = () => {
   const [Input,setInput]=useState('');
   const [secure,setSecure] =useState(true);
+  const [focus,setFocus]=useState(false);
+
+  const Focus=()=>{
+    setFocus(!focus)
+  }
 
   const SecureText=()=>{
     setSecure(!secure)
@@ -19,6 +24,8 @@ const App = () => {
             onChangeText={setInput}
             secureTextEntry={true}
             autoCompleteType="off"
+            autoFocus={true}
+            onFocus={Focus}
           />
       </View>
   
@@ -45,6 +52,7 @@ const App = () => {
         onChangeText={setInput}
         secureTextEntry={secure}
         autoCompleteType="off"
+        autoFocus={true}
       />
     </View>
   </View>
